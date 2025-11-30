@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SkyBook – Airline Reservations</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+  <link href="css/styles.css" rel="stylesheet" />
+</head>
+<body>
+
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">
+        <i class="bi bi-airplane-fill me-2"></i>SkyBook
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navMain">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="search.html">Search</a></li>
+          <li class="nav-item"><a class="nav-link" href="my-trips.html">My Trips</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+
+        <!-- USER NAVIGATION AREA -->
+        <div class="d-flex" id="navUserArea">
+
+          <!-- Default (Before Login) -->
+          <a class="btn btn-outline-primary me-2" href="login.html" id="navLogin">Login</a>
+          <a class="btn btn-primary" href="register.html" id="navSignup">Sign Up</a>
+
+          <!-- After Login (Hidden initially) -->
+          <a class="btn btn-primary d-none" href="profile.html" id="navAccount">
+            <i class="bi bi-person-circle me-1"></i> Account
+          </a>
+
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main class="flex-grow-1">
+
+<section class="hero gradient-bg text-white py-5">
+  <div class="container">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-6">
+        <h1 class="display-5 fw-bold">Book flights faster with SkyBook</h1>
+        <p class="lead opacity-75">Simple search, transparent fares, and smooth checkout.</p>
+        <a href="search.html" class="btn btn-light btn-lg mt-2"><i class="bi bi-search me-1"></i> Find Flights</a>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="card shadow-lg border-0">
+          <div class="card-body p-4">
+            <h5 class="card-title mb-3">Quick Search</h5>
+            <form action="results.html" method="get" class="row g-3" id="quickSearchForm">
+              <div class="col-md-6">
+                <label class="form-label">From</label>
+                <input type="text" class="form-control" name="from" placeholder="e.g. DEL" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">To</label>
+                <input type="text" class="form-control" name="to" placeholder="e.g. BOM" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Departure</label>
+                <input type="date" class="form-control" name="depart" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Return</label>
+                <input type="date" class="form-control" name="return">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Passengers</label>
+                <input type="number" class="form-control" name="pax" min="1" value="1" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Class</label>
+                <select class="form-select" name="class">
+                  <option>Economy</option>
+                  <option>Premium Economy</option>
+                  <option>Business</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <button class="btn btn-primary w-100" type="submit">Search Flights</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="container my-5">
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="card h-100 border-0 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title"><i class="bi bi-cash-coin me-2"></i>No hidden fees</h5>
+          <p class="card-text text-secondary">Transparent pricing from search to checkout.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card h-100 border-0 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title"><i class="bi bi-shield-check me-2"></i>Secure booking</h5>
+          <p class="card-text text-secondary">Your payments are protected and encrypted.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card h-100 border-0 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title"><i class="bi bi-clock-history me-2"></i>24/7 support</h5>
+          <p class="card-text text-secondary">We’re here whenever you need help.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="mt-5 border-top">
+  <div class="container py-4 text-center">
+    <span class="fw-bold"><i class="bi bi-airplane-fill me-2"></i>SkyBook</span>
+    <span class="text-secondary ms-2">© 2025 All rights reserved.</span>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- LOGIN CHECK SCRIPT -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+    const loginBtn = document.getElementById("navLogin");
+    const signupBtn = document.getElementById("navSignup");
+    const accountBtn = document.getElementById("navAccount");
+
+    if (isLoggedIn === "true") {
+        loginBtn.classList.add("d-none");
+        signupBtn.classList.add("d-none");
+        accountBtn.classList.remove("d-none");
+    } else {
+        loginBtn.classList.remove("d-none");
+        signupBtn.classList.remove("d-none");
+        accountBtn.classList.add("d-none");
+    }
+});
+</script>
+
+</body>
+</html>

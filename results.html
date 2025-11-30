@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Results – SkyBook</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+  <link href="css/styles.css" rel="stylesheet" />
+</head>
+<body>
+
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">
+        <i class="bi bi-airplane-fill me-2"></i>SkyBook
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMain">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="search.html">Search</a></li>
+          <li class="nav-item"><a class="nav-link" href="my-trips.html">My Trips</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+        <div class="d-flex">
+          <a class="btn btn-outline-primary me-2" href="login.html">Login</a>
+          <a class="btn btn-primary" href="register.html">Sign Up</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main class="flex-grow-1">
+
+<section class="container py-4">
+  <h2 class="mb-4">Available Flights</h2>
+  <div id="resultsList" class="vstack gap-3"></div>
+</section>
+
+</main>
+
+<footer class="mt-5 border-top">
+  <div class="container py-4">
+    <div class="row g-3 align-items-center">
+      <div class="col-md">
+        <span class="fw-bold"><i class="bi bi-airplane-fill me-2"></i>SkyBook</span>
+        <span class="text-secondary ms-2">© 2025 All rights reserved.</span>
+      </div>
+      <div class="col-md text-md-end">
+        <a class="text-secondary me-3" href="terms.html">Terms</a>
+        <a class="text-secondary" href="privacy.html">Privacy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Read search parameters from URL
+const params = new URLSearchParams(window.location.search);
+const from = params.get("from");
+const to = params.get("to");
+const depart = params.get("depart");
+const pax = params.get("pax");
+
+// Dummy flight database
+const flights = [
+  { airline: "IndiGo", from: "DEL", to: "BOM", time: "09:00 AM", duration: "2h 10m", price: 3500 },
+  { airline: "Air India", from: "DEL", to: "BOM", time: "05:30 PM", duration: "2h 20m", price: 4200 },
+  { airline: "Vistara", from: "DEL", to: "BOM", time: "11:15 AM", duration: "2h 05m", price: 5500 },
+  { airline: "Go First", from: "DEL", to: "BLR", time: "02:45 PM", duration: "2h 50m", price: 4800 },
+  { airline: "SpiceJet", from: "BOM", to: "DEL", time: "07:00 AM", duration: "2h 15m", price: 3900 },
+];
+
+// Filter flights
+const availableFlights = flights.filter(f =>
+  f.from.toLowerCase() === from.toLowerCase() &&
+  f.to.toLowerCase() === to.toLowerCase()
+);
+
+const resultsList = document.getElementById("resultsList");
+
+// If no flights available
+if (availableFlights.length === 0) {
+  resultsList.innerHTML = `<div class="alert alert-warning">No flights found for ${from} → ${to}</div>`;
+} else {
+  availableFlights.forEach(f => {
+    resultsList.innerHTML += `
+      <div class="card border-0 shadow-sm p-3">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <h5 class="mb-1">${f.airline}</h5>
+            <p class="mb-1 text-secondary">${f.from} → ${f.to}</p>
+            <p class="mb-1">Time: ${f.time}</p>
+            <p class="mb-1">Duration: ${f.duration}</p>
+          </div>
+          <div class="text-end">
+            <h5 class="text-primary">₹${f.price}</h5>
+            <button class="btn btn-primary mt-2" onclick='bookTicket(${JSON.stringify(
+              JSON.stringify(f)
+            )})'>Book Now</button>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+}
+
+// Save selected ticket
+function bookTicket(ticket) {
+  localStorage.setItem("myTicket", ticket);
+  window.location.href = "confirmation.html"; // go to payment page later
+}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
